@@ -3,21 +3,19 @@
   "version": "1.0.0",
   "description": "",
   "main": "./dist/src/index.js",
-  "type": "module",
   "types": "./dist/src/index.d.ts",
   "scripts": {
-    "step1": "tsc -p tsconfig.json --module esnext && cross-env TEST_ON_BERKELEY=true node --experimental-specifier-resolution=node ./dist/src/step1.js",
-    "step2": "tsc -p tsconfig.json --module esnext && cross-env TEST_ON_BERKELEY=true node --experimental-specifier-resolution=node ./dist/src/step2.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "step1": "ts-node ./src/step1",
+    "step2": "ts-node ./src/step2"
   },
   "author": "",
   "license": "ISC",
-  "peerDependencies": {
-    "o1js": "0.15.1"
+  "dependencies": {
+    "@types/node": "^20.11.16",
+    "o1js": "0.14.2"
   },
   "devDependencies": {
-    "cross-env": "^7.0.3",
-    "@types/node": "^20.11.16",
-    "typescript": "^4.7.2"
-  }
+    "typescript": "^5.3.3"
+  },
+  "packageManager": "yarn@4.1.0"
 }

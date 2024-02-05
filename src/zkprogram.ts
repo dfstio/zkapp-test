@@ -1,27 +1,46 @@
 import {
-    Bool,
-    Field,
-    Poseidon,
-    Provable,
-    PublicKey,
-    UInt64,
-    verify,
-    ZkProgram,
-} from 'o1js';
-import fs from "fs";
+  Field,
+  ZkProgram,
+  verify,
+  JsonProof,
+  state,
+  State,
+  method,
+  SmartContract,
+} from "o1js";
 
-export let ProverX = ZkProgram({
-    name: 'ProverX',
-    publicOutput: UInt64,
+export const ProverX = ZkProgram({
+  name: "ProverX",
+  publicInput: Field,
 
-    methods: {
-        dummy: {
-            privateInputs: [],
-            method() {
-                return UInt64.from(0);
-            },
-        }
+  methods: {
+    mymethod: {
+      privateInputs: [Field],
+      method(a: Field, b: Field) {
+        a.assertEquals(b);
+      },
     },
+  },
 });
 
-export class ProverProofX extends ZkProgram.Proof(ProverX) { }
+export class ProverProofX extends ZkProgram.Proof(ProverX) {}
+
+class MySmartContract extends SmartContract {
+  @state(Field) key = State<Field>();
+  @state(Field) value = State<Field>();
+
+  @method mint(value: Field) {
+    this.value.set(value);
+  }
+}
+
+export async function verifyProof(str: string) {
+  await MySmartContract.compile();
+  const { verificationKey: ProverX_VK } = await ProverX.compile();
+  const proof: ProverProofX = ProverProofX.fromJSON(
+    JSON.parse(str) as JsonProof
+  ) as ProverProofX;
+  console.log("proof: ", proof);
+  const ok = await verify(proof, ProverX_VK);
+  return ok;
+}
