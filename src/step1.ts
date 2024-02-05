@@ -22,7 +22,7 @@ export async function genProofAndSerAndVerify() {
         const ok = await verify(proof, ProverX_VK);
         console.log('ok: ' + ok);
 
-        const proofStr = JSON.stringify(proof.toJSON(), null, 2);
+        const proofStr = JSON.stringify(proof.toJSON());
         console.log('proofStr: ' + proofStr);
         // write to file
         fs.writeFileSync('./proof.json', proofStr);
