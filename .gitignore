@@ -19,3 +19,5 @@ user-asset-db
 whitelist-db
 
 dist
+
+package-lock.json
