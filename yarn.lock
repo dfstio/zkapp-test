@@ -68,9 +68,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"o1js@npm:0.14.2":
-  version: 0.14.2
-  resolution: "o1js@npm:0.14.2"
+"o1js@npm:0.16.0":
+  version: 0.16.0
+  resolution: "o1js@npm:0.16.0"
   dependencies:
     blakejs: "npm:1.2.1"
     cachedir: "npm:^2.4.0"
@@ -81,7 +81,7 @@ __metadata:
     tslib: "npm:^2.3.0"
   bin:
     snarky-run: src/build/run.js
-  checksum: 10c0/3621526612dd17df395b73648fed0712b8c1a8103770bb388704bf106ecae324327e4df33c320ff34d475a636efa23d935b08a4cedacc4ec0e2d9175df0f86f7
+  checksum: 10c0/5303c15a56fcf48519bf396adc00969179722d2892138323a17a2de5c5ab0c7cd6a4812f539b896884e77e3cc514b69e311373de0dfa944bc63452d97388bb5f
   languageName: node
   linkType: hard
 
@@ -169,7 +169,7 @@ __metadata:
   resolution: "zkapp-test@workspace:."
   dependencies:
     "@types/node": "npm:^20.11.16"
-    o1js: "npm:0.14.2"
+    o1js: "npm:0.16.0"
     typescript: "npm:^5.3.3"
   languageName: unknown
   linkType: soft

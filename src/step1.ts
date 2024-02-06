@@ -4,7 +4,6 @@ import { ProverX, ProverProofX, verifyProof } from "./zkprogram";
 
 export async function genProofAndSerAndVerify() {
   const { verificationKey: ProverX_VK } = await ProverX.compile();
-  console.log("ProverX_VK: " + ProverX_VK);
 
   const proof = await ProverX.mymethod(Field(2), Field(2));
 
@@ -25,7 +24,7 @@ export async function genProofAndSerAndVerify() {
     console.log("proof2: ", proof2);
     const ok2 = await verify(proof2, ProverX_VK);
     console.log("ok2: " + ok2);
-    const ok3 = await verifyProof(proofStr);
+    const ok3 = await verifyProof(str2);
     console.log("ok3: " + ok3);
   } catch (error) {
     console.error(error);

@@ -7,6 +7,7 @@ import {
   State,
   method,
   SmartContract,
+  VerificationKey,
 } from "o1js";
 
 export const ProverX = ZkProgram({
@@ -34,13 +35,11 @@ class MySmartContract extends SmartContract {
   }
 }
 
+let vk: VerificationKey;
+
 export async function verifyProof(str: string) {
-  await MySmartContract.compile();
-  const { verificationKey: ProverX_VK } = await ProverX.compile();
-  const proof: ProverProofX = ProverProofX.fromJSON(
-    JSON.parse(str) as JsonProof
-  ) as ProverProofX;
-  console.log("proof: ", proof);
-  const ok = await verify(proof, ProverX_VK);
+  //await MySmartContract.compile();
+  vk = (await ProverX.compile({ forceRecompile: true })).verificationKey;
+  const ok = await verify(JSON.parse(str) as JsonProof, vk);
   return ok;
 }
